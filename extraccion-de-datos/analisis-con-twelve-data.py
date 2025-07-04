@@ -4,9 +4,18 @@ import json
 import plotly.io as pio 
 import threading
 import time
+import os
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
 
 # Configuracion inicial
-api_key = "APIKEYTWELVEDATA"
+api_key = os.getenv("API_KEY_TWELVE")
+
+if not api_key:
+    raise ValueError("API_KEY_TWELVE no está configurada en las variables de entorno")
+
 td = TDClient(apikey=api_key)
 
 # Imprimir Estado actual de la API
